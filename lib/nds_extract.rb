@@ -73,7 +73,6 @@ def gross_per_studio(collection)
   total_worldwide_gross = {}
   index = 0
   while index < collection.size do
-    puts collection[index][:studio]
     if !(total_worldwide_gross.has_key?(collection[index][:studio]))
       total_worldwide_gross[collection[index][:studio]] = 0
     else
@@ -83,6 +82,23 @@ def gross_per_studio(collection)
     index += 1
   end
   total_worldwide_gross
+  
+  while director_index < collection.size do
+    if !( studio_gross_totals.has_key? 'collection[director_index][:studio]' )
+      studio_gross_totals[collection[director_index][:studio]] = 0
+    end
+    director_index += 1
+  end
+  director_index = 0
+  
+  while director_index < collection.size do
+    studio_gross_totals[collection[director_index][:studio]] += collection[director_index][:worldwide_gross]
+    director_index += 1
+  end
+  studio_gross_totals
+  
+  
+  
 end
 
 def movies_with_directors_set(source)
